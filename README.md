@@ -1,7 +1,7 @@
-pdfgenerator
+node-messagesender
 ================
 
-Generates PDF for parsimotion entities
+Sends messages to Azure Queue
 
 ## Prerrequisitos
 
@@ -14,4 +14,19 @@ Generates PDF for parsimotion entities
 npm install
 
 npm start # Start application
+```
+
+### To Send Messages
+**pricechange message**
+```
+GET http://localhost:4000/priceupdate/
+```
+**stockupdate message**
+```
+GET http://localhost:4000/stockupdate/
+```
+
+### To Read Messages
+```
+GET http://localhost:4000/
 ```
