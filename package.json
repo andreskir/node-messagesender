@@ -1,0 +1,15 @@
+{
+  "name": "messagesender",
+  "description": "messagesender",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "azure-storage": "^0.4.2",
+    "body-parser": "~1.0.2",
+    "coffee-script": "latest",
+    "express": "~4.1.1"
+  },
+  "scripts": {
+    "start": "coffee -w app.coffee"
+  }
+}
