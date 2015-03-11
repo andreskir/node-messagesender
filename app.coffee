@@ -9,29 +9,7 @@ exports.app = app
 app.set 'port', 4000
 app.use bodyParser()
 
-priceupdate =
-  method: 'PUT'
-  companyId: 1
-  resource: 'products/55'
-  body:
-    prices: [
-      priceList: "Default"
-      amount: 649.99
-    ]
-
-stocksupdate =
-  method: 'PUT'
-  companyId: 1
-  resource: 'products/55/stocks'
-  body: [
-    variation: 230
-    stocks: [
-      warehouse: "Default"
-      quantity: 5
-    ]
-  ]
-
-queueSvc = azure.createQueueService 'producteca', 'sharedKey'
+queueSvc = azure.createQueueService 'storageName', 'accessKey'
 
 messageCtrl = (message) ->
   (req, res) ->
@@ -40,19 +18,9 @@ messageCtrl = (message) ->
         return res.send err
       res.send message
 
-app.get '/priceupdate', messageCtrl priceupdate
-app.get '/stocksupdate', messageCtrl stocksupdate
 app.get '/', (req, res) ->
-  queueSvc.getMessages 'requests', (err, result, response) ->
-    if err
-      return res.send err
-    message = result[0]
-    if message == undefined
-      return res.send 'no new messages'
-    queueSvc.deleteMessage 'requests', message.messageid, message.popreceipt, (err) ->
-      if err
-        return res.send err
-      res.send message
+  queueSvc.getQueueMetadata 'requests', (err, result, response) ->
+    res.send result.approximatemessagecount
 
 app.listen app.get('port'), () ->
   console.log "listening on port #{app.get('port')}"
