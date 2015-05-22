@@ -1,6 +1,8 @@
 node-messagesender
 ================
 
+[![Join the chat at https://gitter.im/andreskir/node-messagesender](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/andreskir/node-messagesender?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Sends messages to Azure Queue
 
 ## Prerrequisitos
